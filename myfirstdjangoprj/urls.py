@@ -20,5 +20,4 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myfirstapp.urls'))
-#    path(r'^hello/',views.hello, name='hello' ),
 ]
