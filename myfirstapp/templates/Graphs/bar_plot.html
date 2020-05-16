@@ -1,0 +1,19 @@
+<canvas id='{{chart_type}}_1'></canvas>
+<script>
+var ctx = document.getElementById('{{chart_type}}_1').getContext('2d');
+var myBarChart = new Chart(ctx, {
+    type: '{{chart_type}}',
+    data: {
+        labels: ['TotalConfirmed', 'TotalDeaths', 'TotalRecovered'],
+        datasets: [{
+            label: 'COVID-19 INDIA',
+            backgroundColor: ['rgba(255, 159, 64, 0.8)','rgba(255, 0, 0, 0.8)','rgba(0, 255, 0, 0.8)'],
+            borderColor: ['rgb(255, 159, 64)','rgb(255, 0, 0)','rgb(0, 255, 0)'],
+            fill: false,
+            borderWidth: 1,
+            data: [{{Country.TotalConfirmed}},{{Country.TotalDeaths}},{{Country.TotalRecovered}}]
+        }]
+    },
+    options: {}
+});
+</script>
