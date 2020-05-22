@@ -1,0 +1,43 @@
+<canvas id="timeseries"></canvas>
+<script>
+var ctx = document.getElementById('timeseries').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: [
+            {% for country_data in country %}
+            '{{ country_data.Date }}',
+            {% endfor %}
+            ],
+        datasets: [{
+            label: 'Confirmed Cases in {{country_data.Country}}',
+            backgroundColor: 'rgb(255, 227, 164)',
+            borderColor: 'rgb(255, 227, 164)',
+            data: [
+            {% for country_data in country %}
+            {{country_data.Confirmed}},
+            {% endfor %}
+            ]
+        },
+        {
+        label: 'Confirmed deaths in {{country_data.Country}}',
+            backgroundColor: 'rgb(255, 0, 0)',
+            borderColor: 'rgb(255, 0, 0)',
+            data: [
+            {% for country_data in country %}
+            {{country_data.Deaths}},
+            {% endfor %}
+            ]
+        }
+        ]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+
+</script>

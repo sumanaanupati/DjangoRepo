@@ -6,5 +6,8 @@ def get_data_from_url():
         print('Api response success')
         return resp.json()
 
-if __name__ == "__main__":
-    get_data_from_url()
+def get_country_data(country_name):
+    resp = requests.get(url='https://api.covid19api.com/total/country/'+country_name)
+    if resp.status_code == 200:
+        print('Api response success')
+        return resp.json()

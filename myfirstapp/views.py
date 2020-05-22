@@ -6,3 +6,7 @@ from . import utils
 
 def hello(request):
     return render(request,'welcome.html',context=utils.get_data_from_url())
+
+
+def trend(request,country):
+    return render(request,'trend.html',context={'country':utils.get_country_data(country)})

@@ -1,52 +1,30 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="container-fluid">
-<table class="table table-bordered table-hover">
-  <thead>
+  <br>
+<table class="sortable table table-bordered table-hover thead-dark">
+  <thead class="thead-dark"  >
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Country</th>
+      <th scope="col">S.No</th>
+      <th scope="col">Country</th> 
       <th scope="col">TotalConfirmed</th>
       <th scope="col">TotalDeaths</th>
       <th scope="col">TotalRecovered</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="TableSearch">
 {% for Country in Countries %}
-{% if 'India' in Country.Country %}
     <tr>
-      <th scope="row">1</th>
-      <td>{{Country.Country}}</td>
+      <th scope="row">{{forloop.counter}}</th>
+      <td><a href="/trend/{{Country.Country}}">{{Country.Country}}</a></td>
       <td>{{Country.TotalConfirmed}}</td>
       <td>{{Country.TotalDeaths}}</td>
       <td>{{Country.TotalRecovered}}</td>
     </tr>
-{% endif %}
 {% endfor %}
    
   </tbody>
 </table>
 </div>
-<div class='row'>
-  {% for Country in Countries %}
-  {% if 'India' in Country.Country %}
-  <div class='col-4'>
-    {% with chart_type='bar' %}
-    {% include 'Graphs/bar_plot.html' %}
-    {% endwith %}
 
-  </div>
-  <div class='col-4'>
-    {% with chart_type='pie' %}
-    {% include 'Graphs/bar_plot.html' %}
-    {% endwith %}
-  </div>
-  <div class='col-4'>
-    {% with chart_type='doughnut' %}
-    {% include 'Graphs/bar_plot.html' %}
-    {% endwith %}
-  </div>
-  {% endif %}
-  {% endfor %}
-</div>
   {% endblock %}
